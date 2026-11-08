@@ -1,0 +1,281 @@
+/* Capstreet Cyclo Club — feuille de style commune
+   Couleurs relevées sur la fiche Gobik (pastilles « COLORES »), à valider à l'écran. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --rose: #F261AB;        /* Pantone 218 C — accent, jamais pour du texte courant */
+  --noir: #111111;
+  --gris-fonce: #414449;  /* « 80 PRO » */
+  --gris-clair: #DEDFE3;  /* Pantone 14-4105 TCX */
+  --gris-fond: #F4F4F6;
+  --blanc: #FFFFFF;
+  --largeur: 72rem;
+  --rayon: 6px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--noir);
+  background: var(--blanc);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 { line-height: 1.2; font-weight: 800; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 0 0 1rem; }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin: 0 0 1rem; }
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: var(--rose);
+}
+h3 { font-size: 1.2rem; margin: 0 0 0.5rem; }
+
+a {
+  color: var(--gris-fonce);
+  text-decoration-color: var(--rose);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--noir); }
+a:focus-visible,
+button:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+
+.lien-evitement {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--noir);
+  color: var(--blanc);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+.lien-evitement:focus { left: 1rem; }
+
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Champ à compléter : visible exprès, à supprimer avant publication */
+.a-completer {
+  background: #FFF3B0;
+  color: var(--noir);
+  padding: 0 0.25em;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* En-tête */
+.entete {
+  background: var(--blanc);
+  border-bottom: 1px solid var(--gris-clair);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.entete .conteneur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+.marque {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--noir);
+}
+.marque img { width: 56px; height: auto; }
+.marque span {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.marque small {
+  display: block;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+.menu a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.25rem 0;
+  border-bottom: 3px solid transparent;
+}
+.menu a:hover { border-bottom-color: var(--gris-clair); }
+.menu a[aria-current="page"] { color: var(--noir); border-bottom-color: var(--rose); }
+
+/* Bandeau photo */
+.bandeau {
+  position: relative;
+  color: var(--blanc);
+  background: var(--noir) center / cover no-repeat;
+  min-height: 46vh;
+  display: flex;
+  align-items: flex-end;
+}
+.bandeau--accueil { min-height: 72vh; }
+.bandeau::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0.1) 100%);
+}
+.bandeau .conteneur { position: relative; padding-top: 3rem; padding-bottom: 2.5rem; }
+.bandeau p { font-size: 1.15rem; max-width: 40rem; margin: 0 0 1.5rem; }
+.bandeau .a-completer { font-size: 1rem; }
+
+/* Sections */
+.section { padding: 3.5rem 0; }
+.section--grise { background: var(--gris-fond); }
+.section--sombre { background: var(--gris-fonce); color: var(--blanc); }
+.section--sombre a { color: var(--blanc); }
+.texte { max-width: 46rem; }
+.intro { font-size: 1.2rem; }
+
+.grille {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.carte {
+  background: var(--blanc);
+  border: 1px solid var(--gris-clair);
+  border-top: 4px solid var(--rose);
+  border-radius: var(--rayon);
+  padding: 1.5rem;
+}
+.carte p:last-child { margin-bottom: 0; }
+
+.deux-colonnes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 48rem) {
+  .deux-colonnes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.deux-colonnes img { border-radius: var(--rayon); }
+
+.chiffres {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  text-align: center;
+}
+.chiffre strong {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+.chiffre strong::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 3px;
+  margin: 0.4rem auto 0.6rem;
+  background: var(--rose);
+}
+
+.bureau {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+.bureau li {
+  background: var(--blanc);
+  border: 1px solid var(--gris-clair);
+  border-radius: var(--rayon);
+  padding: 1rem 1.25rem;
+}
+.bureau strong { display: block; font-size: 1.1rem; }
+.bureau span { color: var(--gris-fonce); font-size: 0.95rem; }
+
+.etapes { padding-left: 1.25rem; }
+.etapes li { margin-bottom: 0.75rem; }
+.etapes li::marker { font-weight: 800; color: var(--gris-fonce); }
+
+.encadre {
+  border-left: 4px solid var(--rose);
+  background: var(--gris-fond);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+}
+
+/* Boutons : fond rose, texte noir (contraste suffisant) */
+.bouton {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--noir);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--rose);
+}
+.bouton:hover { background: var(--blanc); color: var(--noir); }
+.bouton--contour { background: transparent; color: inherit; border-color: currentColor; }
+.bouton--contour:hover { background: var(--blanc); color: var(--noir); border-color: var(--blanc); }
+.boutons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Pied de page */
+.pied {
+  background: var(--noir);
+  color: var(--gris-clair);
+  padding: 2.5rem 0;
+  font-size: 0.95rem;
+}
+.pied .conteneur {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+.pied a { color: var(--blanc); }
+.pied p { margin: 0.25rem 0; }
+
+.mentions h2 { margin-top: 2.5rem; }
+.credits { padding-left: 1.25rem; }
